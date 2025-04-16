@@ -8,8 +8,7 @@ public class AnagramJava8 {
         str1 = str1.toLowerCase();
         str2 = str2.toLowerCase();
 
-        boolean result = str1.chars().sorted().toArray().equals(str2.chars().sorted().toArray());
-
+        boolean result = Arrays.equals(str1.chars().sorted().toArray(),str2.chars().sorted().toArray());
         System.out.println(str1 + " ---- anagram " + str2 + " is " + result);
     }
 }
