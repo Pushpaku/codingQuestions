@@ -1,0 +1,36 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class ArmstrongArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Taking input for the array
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+        int[] numbers = new int[size];
+        
+        System.out.println("Enter the numbers in the array: ");
+        for (int i = 0; i < size; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+
+        // Process each number in the array to check if it's an Armstrong number
+        Arrays.stream(numbers)
+                .filter(num -> isArmstrong(num)) // Filter Armstrong numbers
+                .forEach(num -> System.out.println(num + " is an Armstrong number."));
+        
+        scanner.close();
+    }
+
+    // Helper method to check if a number is an Armstrong number
+    private static boolean isArmstrong(int number) {
+        int digits = String.valueOf(number).length(); // Get the number of digits
+        int sum = String.valueOf(number)
+                        .chars()
+                        .map(c -> (int) Math.pow(c - '0', digits)) // Raise each digit to the power of number of digits
+                        .sum(); // Sum the results
+        
+        return sum == number; // If the sum equals the original number, it's an Armstrong number
+    }
+}
