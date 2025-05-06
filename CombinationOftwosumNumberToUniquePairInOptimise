@@ -1,0 +1,36 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class CombinationOfTwoNumberSum {
+
+    public static void main(String[] args) {
+        int[] arr = {8, 7, 3, 1, 9, 5, 2, 4, 6, 11, 15};
+        int target = 10;
+
+        Set<Integer> seenNumbers = new HashSet<>();
+        Set<String> printedPairs = new HashSet<>();
+        boolean found = false;
+
+        for (int num : arr) {
+            int complement = target - num;
+
+            if (seenNumbers.contains(complement)) {
+                int min = Math.min(num, complement);
+                int max = Math.max(num, complement);
+                String pair = min + "," + max;
+
+                if (!printedPairs.contains(pair)) {
+                    System.out.println("Combination of numbers: " + min + " and " + max);
+                    printedPairs.add(pair);
+                    found = true;
+                }
+            }
+
+            seenNumbers.add(num);
+        }
+
+        if (!found) {
+            System.out.println("No valid combinations found.");
+        }
+    }
+}
