@@ -1,0 +1,26 @@
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
+public class CompareTwoArrays {
+    public static void main(String[] args) {
+        int[] a = {4, 5, 6, 7};
+        int[] b = {4, 5, 7, 8};
+
+        // Check if arrays are of the same length
+        if (a.length != b.length) {
+            System.out.println("Arrays are not equal.");
+            return;
+        }
+
+        // Compare arrays element by element using IntStream
+        boolean areEqual = IntStream.range(0, a.length)
+                                    .allMatch(i -> a[i] == b[i]);
+
+        // Output the result
+        if (areEqual) {
+            System.out.println("Arrays are equal.");
+        } else {
+            System.out.println("Arrays are not equal.");
+        }
+    }
+}
