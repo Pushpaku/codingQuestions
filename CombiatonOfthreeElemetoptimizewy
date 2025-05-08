@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class ThreeSumOptimal {
+    public static void main(String[] args) {
+        int[] arr = {8, 7, 3, 1, 9, 5, 2, 4, 6};
+        int target = 10;
+
+        Arrays.sort(arr); // O(n log n)
+
+        Set<List<Integer>> result = new HashSet<>();
+
+        for (int i = 0; i < arr.length - 2; i++) {
+            int left = i + 1, right = arr.length - 1;
+
+            while (left < right) {
+                int sum = arr[i] + arr[left] + arr[right];
+
+                if (sum == target) {
+                    result.add(Arrays.asList(arr[i], arr[left], arr[right]));
+                    left++;
+                    right--;
+                } else if (sum < target) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+
+        // Optional Java 8 stream to print the result
+        result.stream().forEach(triplet -> 
+            System.out.println("Combination: " + triplet)
+        );
+    }
+}
