@@ -1,0 +1,30 @@
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class RepeatedAndNonRepeatedChar {
+    public static void main(String[] args) {
+        String input = "programming";
+
+        // Frequency map using Java 8
+        Map<Character, Long> frequencyMap = input.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        LinkedHashMap::new,
+                        Collectors.counting()
+                ));
+
+        // Repeated Characters
+        System.out.println("Repeated Characters:");
+        frequencyMap.entrySet().stream()
+                .filter(e -> e.getValue() > 1)
+                .forEach(e -> System.out.println(e.getKey() + " = " + e.getValue()));
+
+        // Non-Repeated Characters
+        System.out.println("\nNon-Repeated Characters:");
+        frequencyMap.entrySet().stream()
+                .filter(e -> e.getValue() == 1)
+                .forEach(e -> System.out.println(e.getKey()));
+    }
+}
