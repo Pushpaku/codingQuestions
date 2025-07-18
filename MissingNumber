@@ -1,0 +1,15 @@
+import java.util.Arrays;
+
+public class MissingNumberFinder {
+    public static void main(String[] args) {
+        int[] input = {4, 3, 1, -1};
+        System.out.println("Missing number is: " + findMissingNumber(input));
+    }
+
+    public static int findMissingNumber(int[] arr) {
+        int n = arr.length;
+        int expectedSum = n * (n + 1) / 2;
+        int actualSum = Arrays.stream(arr).filter(i -> i != -1).sum();
+        return expectedSum - actualSum;
+    }
+}
