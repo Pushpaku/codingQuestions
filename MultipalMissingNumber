@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class MissingNumbersSimple {
+
+    public static List<Integer> findMissingNumbers(int[] arr, int start, int end) {
+        List<Integer> missing = new ArrayList<>();
+        Set<Integer> present = new HashSet<>();
+
+        // Add all elements from the array to the set
+        for (int num : arr) {
+            present.add(num);
+        }
+
+        // Check from start to end, add to missing if not in set
+        for (int i = start; i <= end; i++) {
+            if (!present.contains(i)) {
+                missing.add(i);
+            }
+        }
+
+        return missing;
+    }
+
+    public static void main(String[] args) {
+        int[] input = {1, 4, 6, 7};
+        List<Integer> missing = findMissingNumbers(input, 1, 7);
+        System.out.println("Missing numbers: " + missing);
+    }
+}
